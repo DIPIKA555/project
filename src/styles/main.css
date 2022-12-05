@@ -1,4 +1,104 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100;400&family=Zen+Dots&display=swap");
 body {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  background-image: url("/public/background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
   background-color: #2B3A55;
   color: #F2E5E5;
+  font-family: "Zen Dots", cursive;
+  height: 100vh;
+}
+body .helper-text {
+  font-family: "Roboto Mono", monospace;
+  color: rgba(242, 229, 229, 0.6784313725);
+}
+body .helper-text p {
+  margin: 0;
+  margin-top: 5px;
+  margin-bottom: 15px;
+}
+body .overlay {
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.5);
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
+  z-index: -1;
+}
+body .button-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 30px;
+}
+body .button-wrapper .button-primary {
+  grid-column-start: 1;
+  grid-column-end: 4;
+}
+body .button {
+  border: none;
+  outline: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+body .button:active {
+  transform: scale(0.9);
+}
+body .button.button-primary {
+  background-color: transparent;
+  padding: 12px 30px;
+  font-size: 2.3em;
+  color: #F2E5E5;
+  border: 2px solid rgba(242, 229, 229, 0.6588235294);
+  transition: 0.2s ease-in-out;
+}
+body .button.button-primary:hover {
+  background-color: rgba(238, 238, 238, 0.3);
+}
+body .button.button-outline-primary {
+  background-color: rgba(238, 238, 238, 0.1);
+  color: #F2E5E5;
+  padding: 18px 22px;
+  font-size: 1.2em;
+  transition: 0.2s ease-in-out;
+  border: 2px solid transparent;
+}
+body .button.button-outline-primary.selected, body .button.button-outline-primary:hover {
+  background-color: rgba(238, 238, 238, 0.3);
+}
+body .button.button-outline-primary.selected.easy, body .button.button-outline-primary:hover.easy {
+  border: 2px solid #88cf17;
+}
+body .button.button-outline-primary.selected.medium, body .button.button-outline-primary:hover.medium {
+  border: 2px solid #FED049;
+}
+body .button.button-outline-primary.selected.hard, body .button.button-outline-primary:hover.hard {
+  border: 2px solid #D23369;
+}
+body .button.button-outline-primary:active {
+  transform: scale(0.9);
+}
+body #root {
+  height: 100%;
+}
+body #root .container {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body #root .container .app-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+body #root .container .app-header .headline {
+  font-weight: 700;
+  font-size: 3em;
+  margin: 20px 0;
 }/*# sourceMappingURL=main.css.map */
