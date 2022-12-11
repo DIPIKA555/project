@@ -6,6 +6,9 @@ $dark-font-color: #111;
 $color-primary: #FF7000;
 $button-hover-background: rgba(238, 238, 238, 0.3);
 
+$neon-color: hsl(317, 100%, 54%);
+$neon-background: hsl(323, 21%, 16%);
+
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100;400&family=Zen+Dots&display=swap');
 
 body {
@@ -17,11 +20,14 @@ body {
     background-repeat: no-repeat;
     background-color: $background-color;
     color: $default-font-color;
-    font-family: 'Zen Dots', cursive;
     height: 100vh;
+    font-family: 'Roboto Mono', monospace;
+
+    .accent-font {
+        font-family: 'Zen Dots', cursive;
+    }
 
     .helper-text {
-        font-family: 'Roboto Mono', monospace;
         color: $dimmed-font-color;
 
         p {
@@ -44,6 +50,7 @@ body {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         gap: 12px;
+        row-gap: 30px;
         margin-bottom: 30px;
 
         .button-primary {
@@ -57,6 +64,14 @@ body {
         outline: none;
         border-radius: 8px;
         cursor: pointer;
+
+        &.neon-button {
+            text-shadow: 0 0 .5em currentColor;
+            
+            &:hover {
+                text-shadow: 0 0 1em currentColor;
+            }
+        }
 
         &:active {
             transform: scale(0.9);
@@ -82,8 +97,27 @@ body {
             font-size: 1.2em;
             transition: .2s ease-in-out;
             border: 2px solid transparent;
+            font-weight: 600;
 
-            &.selected,
+            &.selected {
+                background-color: $button-hover-background;
+
+                &.easy {
+                    box-shadow: 0 0 1em #88cf17;
+                    border: 2px solid #88cf17;
+                }
+
+                &.medium {
+                    box-shadow: 0 0 1em #FED049;
+                    border: 2px solid #FED049;
+                }
+
+                &.hard {
+                    box-shadow: 0 0 1em #D23369;
+                    border: 2px solid #D23369;
+                }
+            }
+            
             &:hover {
                 background-color: $button-hover-background;
 

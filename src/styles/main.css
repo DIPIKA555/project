@@ -8,11 +8,13 @@ body {
   background-repeat: no-repeat;
   background-color: #2B3A55;
   color: #F2E5E5;
-  font-family: "Zen Dots", cursive;
   height: 100vh;
+  font-family: "Roboto Mono", monospace;
+}
+body .accent-font {
+  font-family: "Zen Dots", cursive;
 }
 body .helper-text {
-  font-family: "Roboto Mono", monospace;
   color: rgba(242, 229, 229, 0.6784313725);
 }
 body .helper-text p {
@@ -33,6 +35,7 @@ body .button-wrapper {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 12px;
+  row-gap: 30px;
   margin-bottom: 30px;
 }
 body .button-wrapper .button-primary {
@@ -44,6 +47,12 @@ body .button {
   outline: none;
   border-radius: 8px;
   cursor: pointer;
+}
+body .button.neon-button {
+  text-shadow: 0 0 0.5em currentColor;
+}
+body .button.neon-button:hover {
+  text-shadow: 0 0 1em currentColor;
 }
 body .button:active {
   transform: scale(0.9);
@@ -66,17 +75,33 @@ body .button.button-outline-primary {
   font-size: 1.2em;
   transition: 0.2s ease-in-out;
   border: 2px solid transparent;
+  font-weight: 600;
 }
-body .button.button-outline-primary.selected, body .button.button-outline-primary:hover {
+body .button.button-outline-primary.selected {
   background-color: rgba(238, 238, 238, 0.3);
 }
-body .button.button-outline-primary.selected.easy, body .button.button-outline-primary:hover.easy {
+body .button.button-outline-primary.selected.easy {
+  box-shadow: 0 0 1em #88cf17;
   border: 2px solid #88cf17;
 }
-body .button.button-outline-primary.selected.medium, body .button.button-outline-primary:hover.medium {
+body .button.button-outline-primary.selected.medium {
+  box-shadow: 0 0 1em #FED049;
   border: 2px solid #FED049;
 }
-body .button.button-outline-primary.selected.hard, body .button.button-outline-primary:hover.hard {
+body .button.button-outline-primary.selected.hard {
+  box-shadow: 0 0 1em #D23369;
+  border: 2px solid #D23369;
+}
+body .button.button-outline-primary:hover {
+  background-color: rgba(238, 238, 238, 0.3);
+}
+body .button.button-outline-primary:hover.easy {
+  border: 2px solid #88cf17;
+}
+body .button.button-outline-primary:hover.medium {
+  border: 2px solid #FED049;
+}
+body .button.button-outline-primary:hover.hard {
   border: 2px solid #D23369;
 }
 body .button.button-outline-primary:active {
