@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100;400&family=Zen+Dots&display=swap");
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css");
 body {
   padding: 0;
   margin: 0;
@@ -41,6 +42,18 @@ body .button-wrapper {
 body .button-wrapper .button-primary {
   grid-column-start: 1;
   grid-column-end: 4;
+}
+body .button-wrapper.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 44px;
+}
+body .button-wrapper.filled {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 12px;
+  border-radius: 8px;
+  box-shadow: rgba(100, 100, 111, 0.1) 0px 7px 29px 0px;
 }
 body .button {
   border: none;
@@ -92,6 +105,11 @@ body .button.button-outline-primary.selected.hard {
   box-shadow: 0 0 1em #D23369;
   border: 2px solid #D23369;
 }
+body .button.button-outline-primary.solid {
+  background-color: rgba(238, 238, 238, 0.6);
+  color: #111;
+  font-weight: 800;
+}
 body .button.button-outline-primary:hover {
   background-color: rgba(238, 238, 238, 0.3);
 }
@@ -116,6 +134,9 @@ body #root .container {
   justify-content: center;
   align-items: center;
 }
+body #root .container.column {
+  flex-direction: column;
+}
 body #root .container .app-header {
   display: flex;
   justify-content: center;
@@ -126,4 +147,37 @@ body #root .container .app-header .headline {
   font-weight: 700;
   font-size: 3em;
   margin: 20px 0;
+}
+body #root .container .board-wrapper {
+  background-color: rgba(0, 0, 0, 0.3);
+  -webkit-backdrop-filter: blur(12px);
+          backdrop-filter: blur(12px);
+  padding: 12px;
+  border-radius: 8px;
+  box-shadow: rgba(100, 100, 111, 0.3) 0px 7px 29px 0px;
+}
+body #root .container .board-wrapper .board-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 271px);
+  grid-template-rows: repeat(3, 271px);
+  gap: 10px;
+}
+body #root .container .board-wrapper .board-grid .tile-group {
+  display: grid;
+  grid-template-columns: repeat(3, 89px);
+  gap: 2px;
+}
+body #root .container .board-wrapper .board-grid .tile-group .board-tile {
+  background-color: rgba(238, 238, 238, 0.2);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.4em;
+  cursor: pointer;
+  transition: 0.1s ease-in-out;
+}
+body #root .container .board-wrapper .board-grid .tile-group .board-tile:hover {
+  background-color: rgba(238, 238, 238, 0.1);
 }/*# sourceMappingURL=main.css.map */

@@ -10,6 +10,7 @@ $neon-color: hsl(317, 100%, 54%);
 $neon-background: hsl(323, 21%, 16%);
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100;400&family=Zen+Dots&display=swap');
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css");
 
 body {
     padding: 0;
@@ -56,6 +57,20 @@ body {
         .button-primary {
             grid-column-start: 1;
             grid-column-end: 4;
+        }
+
+        &.flex {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 44px;
+        }
+
+        &.filled {
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 12px;
+            border-radius: 8px;
+            box-shadow: rgba(100, 100, 111, 0.1) 0px 7px 29px 0px;
         }
     }
 
@@ -117,6 +132,12 @@ body {
                     border: 2px solid #D23369;
                 }
             }
+
+            &.solid {
+                background-color: rgba(238, 238, 238, 0.6);
+                color: $dark-font-color;
+                font-weight: 800;
+            }
             
             &:hover {
                 background-color: $button-hover-background;
@@ -149,6 +170,10 @@ body {
             justify-content: center;
             align-items: center;
 
+            &.column {
+                flex-direction: column;
+            }
+
             .app-header {
                 display: flex;
                 justify-content: center;
@@ -162,7 +187,42 @@ body {
                 }
             }
 
+            .board-wrapper {
+                background-color: rgba(0, 0, 0, 0.3);
+                backdrop-filter: blur(12px);
+                padding: 12px;
+                border-radius: 8px;
+                box-shadow: rgba(100, 100, 111, 0.3) 0px 7px 29px 0px;
+                
+                .board-grid {
+                    display: grid;
+                    grid-template-columns: repeat(3, 271px);
+                    grid-template-rows: repeat(3, 271px);
+                    gap: 10px;
+                    
+                    .tile-group {
+                        display: grid;
+                        grid-template-columns: repeat(3, 89px);
+                        gap: 2px;
+                        
+                        .board-tile {
+                            background-color: rgba(238, 238, 238, 0.2);
+                            width: 100%;
+                            height: 100%;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            font-size: 1.4em;
+                            cursor: pointer;
+                            transition: .1s ease-in-out;
 
+                            &:hover {
+                                background-color: rgba(238, 238, 238, 0.1);
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
