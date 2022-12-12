@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState } from 'react'
+import ExitModal from './ExitModal'
 
 function Badge(props) {
   return (
@@ -7,10 +8,11 @@ function Badge(props) {
 }
 
 function ToolControl(props) {
+  const { setOpened } = props
   return (
     <div className='tool-control'>
       <div className='button-desc'>
-        <button onClick={() => { }} className='button button-primary'>
+        <button onClick={() => { setOpened(true) }} className='button button-primary'>
           <i className="bi bi-box-arrow-left"></i>
         </button>
         <p>Exit</p>
@@ -89,21 +91,25 @@ function Board(props) {
 }
 
 function Game(props) {
+  const [opened, setOpened] = useState(false)    // Set exit modal opened
   return (
-    <div className='container game-wrapper'>
-      <div className='board-container'>
-        <div className='app-header'>
-          <h2>Sudoku</h2>
-        </div>
-        <div className='interactable-wrapper'>
-          <Board />
-          <div className=''>
-            <ToolControl />
-            <NumberControl />
+    <>
+      <div className='container game-wrapper'>
+        <div className='board-container'>
+          <div className='app-header accent-font'>
+            <h2>Sudoku</h2>
+          </div>
+          <div className='interactable-wrapper'>
+            <Board />
+            <div className=''>
+              <ToolControl setOpened={setOpened} />
+              <NumberControl />
+            </div>
           </div>
         </div>
       </div>
-    </div>
+      <ExitModal opened={opened} setOpened={setOpened} />
+    </>
   )
 }
 

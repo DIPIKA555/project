@@ -3,6 +3,7 @@ $default-font-color: #F2E5E5;
 $primary-font-color: #F2E5E5;
 $dimmed-font-color: #f2e5e5ad;
 $dark-font-color: #111;
+$dimmed-dark-font-color: rgba(17, 17, 17, 0.6);
 $color-primary: #FF7000;
 $button-hover-background: rgba(238, 238, 238, 0.3);
 
@@ -30,6 +31,10 @@ body {
 
     .helper-text {
         color: $dimmed-font-color;
+        
+        &.dark {
+            color: $dimmed-dark-font-color;
+        }
 
         p {
             margin: 0;
@@ -145,6 +150,26 @@ body {
                 transform: scale(0.9);
             }
         }
+
+        &.button-secondary {
+            background-color: $color-primary;
+            border-radius: 8px;
+            padding: 10px 20px;
+            font-size: 1em;
+            transition: .2s ease-in-out;
+            color: #eee;
+            font-weight: 800;
+        }
+
+        &.button-danger {
+            background-color: transparent;
+            font-weight: 800;
+            font-size: 1em;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
     }
     
     #root {
@@ -180,6 +205,7 @@ body {
             .board-container {
                 backdrop-filter: blur(20px);
                 padding: 70px;
+                padding-top: 15px;
                 border-radius: 12px;
                 border: 2px solid rgba(17, 17, 17, 0.6);
                 box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px;
@@ -295,6 +321,54 @@ body {
                         
                         &:hover {
                             background-color: rgba(238, 238, 238, 0.85);
+                        }
+                    }
+                }
+            }
+        }
+
+        .modal-overlay {
+            position: fixed;
+            pointer-events: none;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            
+            &.opened {
+                z-index: 1000;
+                background-color: rgba(17, 17, 17, 0.5);
+                backdrop-filter: blur(2px);
+                pointer-events: all;
+                opacity: 1;
+
+                .modal {
+                    background-color: #eee;
+                    border: 5px solid #111;
+                    top: 50%;
+                    left: 50%;
+                    pointer-events: all;
+                    padding: 10px 20px;
+
+                    .modal-header {
+                        color: #111;
+                        margin-bottom: 30px;
+
+                        h3 {
+                            margin-bottom: 0;
+                        }
+                    }
+
+                    .modal-action {
+                        margin-bottom: 10px;
+                        text-align: right;
+
+                        .button-danger {
+                            margin-right: 10px;
                         }
                     }
                 }
