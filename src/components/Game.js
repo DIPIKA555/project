@@ -1,14 +1,9 @@
 import React, { useState } from 'react'
+import Badge from './Badge'
 import ExitModal from './ExitModal'
 
-function Badge(props) {
-  return (
-    <span className='badge'>1</span>
-  )
-}
-
 function ToolControl(props) {
-  const { setOpened } = props
+  const { setOpened, hintCount, useHint } = props
   return (
     <div className='tool-control'>
       <div className='button-desc'>
@@ -30,8 +25,8 @@ function ToolControl(props) {
         <p>Undo</p>
       </div>
       <div className='button-desc'>
-        <button className='button button-primary'>
-          <Badge />
+        <button onClick={useHint} className='button button-primary'>
+          <Badge number={hintCount} />
           <i className="bi bi-lightbulb"></i>
         </button>
         <p>Hint</p>
@@ -91,7 +86,13 @@ function Board(props) {
 }
 
 function Game(props) {
-  const [opened, setOpened] = useState(false)    // Set exit modal opened
+  const [opened, setOpened] = useState(false)     // Set exit modal opened
+  const [hintCount, setHintCount] = useState(1)   // Remaining hints count
+
+  const useHint = () => {
+    if(hintCount > 0) { setHintCount(prev => prev - 1) }
+  }
+
   return (
     <>
       <div className='container game-wrapper'>
@@ -102,7 +103,7 @@ function Game(props) {
           <div className='interactable-wrapper'>
             <Board />
             <div className=''>
-              <ToolControl setOpened={setOpened} />
+              <ToolControl hintCount={hintCount} useHint={useHint} setOpened={setOpened} />
               <NumberControl />
             </div>
           </div>
