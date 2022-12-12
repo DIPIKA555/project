@@ -1,19 +1,51 @@
 import React from 'react'
 
-function ToolControl(props) {
-  <div className=''>
+function Badge(props) {
+  return (
+    <span className='badge'>1</span>
+  )
+}
 
-  </div>
+function ToolControl(props) {
+  return (
+    <div className='tool-control'>
+      <div className='button-desc'>
+        <button onClick={() => { }} className='button button-primary'>
+          <i className="bi bi-box-arrow-left"></i>
+        </button>
+        <p>Exit</p>
+      </div>
+      <div className='button-desc'>
+        <button className='button button-primary'>
+          <i className="bi bi-eraser"></i>
+        </button>
+        <p>Erase</p>
+      </div>
+      <div className='button-desc'>
+        <button className='button button-primary'>
+          <i className="bi bi-arrow-counterclockwise"></i>
+        </button>
+        <p>Undo</p>
+      </div>
+      <div className='button-desc'>
+        <button className='button button-primary'>
+          <Badge />
+          <i className="bi bi-lightbulb"></i>
+        </button>
+        <p>Hint</p>
+      </div>
+    </div>
+  )
 }
 
 // Numbers section user can choose from
 function NumberControl(props) {
-  let buttons = Array.from({length: 9}, (_, index) => {
+  let buttons = Array.from({ length: 9 }, (_, index) => {
     return <button className='button button-outline-primary solid' key={index + 1}>{index + 1}</button>
   })
 
   return (
-    <div className='button-wrapper flex filled'>
+    <div className='numbers-keyboard'>
       {buttons}
     </div>
   )
@@ -31,7 +63,7 @@ function Tile(props) {
 
 // Represents 3x3 square
 function TileGroup() {
-  let tiles = Array.from({length: 9}, (_, index) => {
+  let tiles = Array.from({ length: 9 }, (_, index) => {
     return <Tile number={index} key={index} />
   })
 
@@ -43,7 +75,7 @@ function TileGroup() {
 }
 
 function Board(props) {
-  let groups = Array.from({length: 9}, (_, index) => {
+  let groups = Array.from({ length: 9 }, (_, index) => {
     return <TileGroup key={index} />
   })
 
@@ -58,13 +90,19 @@ function Board(props) {
 
 function Game(props) {
   return (
-    <div className='container column'>
-      <span className='overlay'></span>
-      <header className="app-header">
-        <h1 className="headline accent-font">Sudoku</h1>
-      </header>
-      <Board />
-      <NumberControl />
+    <div className='container game-wrapper'>
+      <div className='board-container'>
+        <div className='app-header'>
+          <h2>Sudoku</h2>
+        </div>
+        <div className='interactable-wrapper'>
+          <Board />
+          <div className=''>
+            <ToolControl />
+            <NumberControl />
+          </div>
+        </div>
+      </div>
     </div>
   )
 }

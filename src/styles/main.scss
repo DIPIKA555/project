@@ -58,20 +58,6 @@ body {
             grid-column-start: 1;
             grid-column-end: 4;
         }
-
-        &.flex {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 44px;
-        }
-
-        &.filled {
-            background-color: rgba(0, 0, 0, 0.5);
-            padding: 12px;
-            border-radius: 8px;
-            box-shadow: rgba(100, 100, 111, 0.1) 0px 7px 29px 0px;
-        }
     }
 
     .button {
@@ -170,6 +156,10 @@ body {
             justify-content: center;
             align-items: center;
 
+            &.game-wrapper {
+                gap: 10px;
+            }
+
             &.column {
                 flex-direction: column;
             }
@@ -187,38 +177,124 @@ body {
                 }
             }
 
-            .board-wrapper {
-                background-color: rgba(0, 0, 0, 0.3);
-                backdrop-filter: blur(12px);
-                padding: 12px;
-                border-radius: 8px;
-                box-shadow: rgba(100, 100, 111, 0.3) 0px 7px 29px 0px;
+            .board-container {
+                backdrop-filter: blur(20px);
+                padding: 70px;
+                border-radius: 12px;
+                border: 2px solid rgba(17, 17, 17, 0.6);
+                box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px;
                 
-                .board-grid {
-                    display: grid;
-                    grid-template-columns: repeat(3, 271px);
-                    grid-template-rows: repeat(3, 271px);
-                    gap: 10px;
+                .interactable-wrapper {
+                    display: flex;
+                    align-items: flex-end;
+                    gap: 20px;
+                }
+
+                .board-wrapper {
+                    background-color: #111;
+                    backdrop-filter: blur(12px);
+                    padding: 8px;
                     
-                    .tile-group {
+                    .board-grid {
                         display: grid;
-                        grid-template-columns: repeat(3, 89px);
-                        gap: 2px;
+                        grid-template-columns: repeat(3, 1fr);
+                        grid-template-rows: repeat(3, 1fr);
+                        gap: 10px;
                         
-                        .board-tile {
-                            background-color: rgba(238, 238, 238, 0.2);
-                            width: 100%;
-                            height: 100%;
+                        .tile-group {
+                            display: grid;
+                            grid-template-columns: repeat(3, 1fr);
+                            gap: 2px;
+                            
+                            .board-tile {
+                                background-color: #eee;
+                                width: 100%;
+                                height: 100%;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                font-size: 1.4em;
+                                cursor: pointer;
+                                transition: .1s ease-in-out;
+                                color: #111;
+                                width: 60px;
+                                height: 60px;
+
+                                &:hover {
+                                    background-color: rgba(238, 238, 238, 0.85);
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .tool-control {
+                    display: grid;
+                    grid-template-columns: repeat(2, 1fr);
+
+                    .button-desc {
+                        font-size: .3em;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        flex-direction: column;
+                        margin-bottom: 10px;
+
+                        .button {
+                            width: 65px;
+                            height: 65px;
+                            border-radius: 50%;
                             display: flex;
                             justify-content: center;
                             align-items: center;
-                            font-size: 1.4em;
-                            cursor: pointer;
-                            transition: .1s ease-in-out;
+                            background-color: #eee;
+                            color: #111;
+                            position: relative;
 
                             &:hover {
-                                background-color: rgba(238, 238, 238, 0.1);
+                                background-color: rgba(238, 238, 238, 0.85);
                             }
+
+                            .badge {
+                                position: absolute;
+                                top: -5px;
+                                right: -5px;
+                                width: 20px;
+                                height: 20px;
+                                background-color: $color-primary;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                border-radius: 50%;
+                            }
+                            
+                            i {
+                                font-size: 2em;
+                            }
+                        }
+
+                        p {
+                            color: #eee;
+                            font-size: 3em;
+                        }
+                    }
+                }
+                
+                .numbers-keyboard {
+                    background-color: #111;
+                    padding: 8px;
+                    display: grid;
+                    grid-template-columns: repeat(3, 1fr);
+                    gap: 8px;
+                    
+                    .button {
+                        background-color: #eee;
+                        border-radius: 0;
+                        width: 90px;
+                        height: 90px;
+                        
+                        &:hover {
+                            background-color: rgba(238, 238, 238, 0.85);
                         }
                     }
                 }
