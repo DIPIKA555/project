@@ -1,6 +1,5 @@
 import React from "react"
 import { useNavigate } from "react-router-dom"
-import Stats from "./components/Stats"
 import useLocalStorage from "./hooks/useLocalStorage"
 
 function GameMode() {

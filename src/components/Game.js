@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Badge from './Badge'
 import ExitModal from './ExitModal'
+import { sudoku, sudokuGroups } from '../constants/sudoku'
 
 function ToolControl(props) {
   const { setOpened, hintCount, useHint } = props
@@ -25,7 +26,7 @@ function ToolControl(props) {
         <p>Undo</p>
       </div>
       <div className='button-desc'>
-        <button onClick={useHint} className='button button-primary'>
+        <button onClick={useHint} className={hintCount > 0 ? 'button button-primary' : 'button button-primary disabled'}>
           <Badge number={hintCount} />
           <i className="bi bi-lightbulb"></i>
         </button>
@@ -38,7 +39,7 @@ function ToolControl(props) {
 // Numbers section user can choose from
 function NumberControl(props) {
   let buttons = Array.from({ length: 9 }, (_, index) => {
-    return <button className='button button-outline-primary solid' key={index + 1}>{index + 1}</button>
+    return <button className='button button-outline-primary solid' key={index}>{index}</button>
   })
 
   return (
@@ -49,37 +50,69 @@ function NumberControl(props) {
 }
 
 function Tile(props) {
-  const { number } = props
+  const { setSelected, selected, x, y } = props
+
+  const [value, setValue] = useState(sudoku[x][y])
+  const [current, setCurrent] = useState(false)
+
+  useEffect(() => {
+    setCurrent(selected.x === x && selected.y === y)
+
+    return () => { }
+  }, [selected, x, y])
+
+  const handleClick = () => {
+    setSelected({ y: y, x: x })
+  }
 
   return (
-    <div className='board-tile'>
-      <h4>{number}</h4>
+    <div className={current ? 'board-tile selected' : 'board-tile'} onClick={handleClick}>
+      <h4>{value}</h4>
     </div>
   )
 }
 
+const calculateTilesValues = (group) => {
+  const { min_x, max_x, min_y, max_y } = sudokuGroups[group]
+  let array = []
+  for (let i = min_x; i <= max_x; i++) {
+    for (let j = min_y; j <= max_y; j++) {
+      array.push({ x: i, y: j })
+    }
+  }
+
+  return array
+}
+
 // Represents 3x3 square
-function TileGroup() {
-  let tiles = Array.from({ length: 9 }, (_, index) => {
-    return <Tile number={index} key={index} />
-  })
+function TileGroup(props) {
+  const { setSelected, selected, group } = props
+  const [tilesArray, setTilesArray] = useState([])
+  
+  useEffect(() => {
+    setTilesArray(calculateTilesValues(group))
+
+    return () => { }
+  }, [group])
 
   return (
     <div className='tile-group'>
-      {tiles}
+      {tilesArray.map((element, key) => {
+        return <Tile key={key} setSelected={setSelected} selected={selected} x={element.x} y={element.y} />
+      })}
     </div>
   )
 }
 
 function Board(props) {
-  let groups = Array.from({ length: 9 }, (_, index) => {
-    return <TileGroup key={index} />
-  })
+  const { setSelected, selected } = props
 
   return (
     <div className='board-wrapper'>
       <div className='board-grid'>
-        {groups}
+        {Array.from({ length: 9 }, (_, index) => {
+          return <TileGroup setSelected={setSelected} selected={selected} group={index} key={index} />
+        })}
       </div>
     </div>
   )
@@ -88,9 +121,10 @@ function Board(props) {
 function Game(props) {
   const [opened, setOpened] = useState(false)     // Set exit modal opened
   const [hintCount, setHintCount] = useState(1)   // Remaining hints count
+  const [selected, setSelected] = useState({ x: -1, y: -1 })
 
   const useHint = () => {
-    if(hintCount > 0) { setHintCount(prev => prev - 1) }
+    if (hintCount > 0) { setHintCount(prev => prev - 1) }
   }
 
   return (
@@ -101,7 +135,7 @@ function Game(props) {
             <h2>Sudoku</h2>
           </div>
           <div className='interactable-wrapper'>
-            <Board />
+            <Board setSelected={setSelected} selected={selected} />
             <div className=''>
               <ToolControl hintCount={hintCount} useHint={useHint} setOpened={setOpened} />
               <NumberControl />
