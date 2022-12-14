@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import Badge from './Badge'
 import ExitModal from './ExitModal'
-import { sudoku, sudokuGroups } from '../constants/sudoku'
+import { sudokuObject } from '../constants/sudoku'
+
 
 function ToolControl(props) {
   const { setOpened, hintCount, useHint } = props
@@ -41,9 +42,9 @@ function NumberControl(props) {
   const { sudokuBoard, setSudokuBoard, selected } = props
 
   const updateValue = (value) => {
-    sudoku[selected.row][selected.column] = value
-    selected.setValue(sudoku[selected.row][selected.column])
-    setSudokuBoard(sudoku)
+    sudokuObject.getSudoku()[selected.row][selected.column] = value
+    selected.setValue(sudokuObject.getSudoku()[selected.row][selected.column])
+    setSudokuBoard(sudokuObject.getSudoku())
   }
 
   let buttons = Array.from({ length: 9 }, (_, index) => {
@@ -58,9 +59,9 @@ function NumberControl(props) {
 }
 
 function Tile(props) {
-  const { setSelected, selected, row, column, group, sudokuBoard } = props
+  const { setSelected, selected, row, column, group } = props
 
-  const [value, setValue] = useState(sudoku[row][column])
+  const [value, setValue] = useState(sudokuObject.getSudoku()[row][column])
   const [current, setCurrent] = useState(false)
   const [inline, setInline] = useState(false)
 
@@ -83,7 +84,7 @@ function Tile(props) {
 }
 
 const calculateTilesValues = (group) => {
-  const { min_x, max_x, min_y, max_y } = sudokuGroups[group]
+  const { min_x, max_x, min_y, max_y } = sudokuObject.getSudokuGroups()[group]
   let array = []
   for (let i = min_y; i <= max_y; i++) {
     for (let j = min_x; j <= max_x; j++) {
@@ -133,7 +134,7 @@ function Game(props) {
   const [hintCount, setHintCount] = useState(1)   // Remaining hints count
   const [selected, setSelected] = useState({ row: -1, column: -1, group: -1, setValue: ()  => {} })
 
-  const [sudokuBoard, setSudokuBoard] = useState(sudoku)
+  const [sudokuBoard, setSudokuBoard] = useState(sudokuObject.getSudoku())
 
   const useHint = () => {
     if (hintCount > 0) { setHintCount(prev => prev - 1) }
