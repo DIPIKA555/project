@@ -50,7 +50,7 @@ function NumberControl(props) {
 }
 
 function Tile(props) {
-  const { setSelected, selected, x, y } = props
+  const { setSelected, selected, x, y, group } = props
 
   const [value, setValue] = useState(sudoku[x][y])
   const [current, setCurrent] = useState(false)
@@ -75,8 +75,8 @@ function Tile(props) {
 const calculateTilesValues = (group) => {
   const { min_x, max_x, min_y, max_y } = sudokuGroups[group]
   let array = []
-  for (let i = min_x; i <= max_x; i++) {
-    for (let j = min_y; j <= max_y; j++) {
+  for (let i = min_y; i <= max_y; i++) {
+    for (let j = min_x; j <= max_x; j++) {
       array.push({ x: i, y: j })
     }
   }
@@ -98,7 +98,7 @@ function TileGroup(props) {
   return (
     <div className='tile-group'>
       {tilesArray.map((element, key) => {
-        return <Tile key={key} setSelected={setSelected} selected={selected} x={element.x} y={element.y} />
+        return <Tile group={group} key={key} setSelected={setSelected} selected={selected} x={element.x} y={element.y} />
       })}
     </div>
   )
