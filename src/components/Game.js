@@ -50,23 +50,25 @@ function NumberControl(props) {
 }
 
 function Tile(props) {
-  const { setSelected, selected, x, y, group } = props
+  const { setSelected, selected, row, column, group } = props
 
-  const [value, setValue] = useState(sudoku[x][y])
+  const [value, setValue] = useState(sudoku[row][column])
   const [current, setCurrent] = useState(false)
+  const [inline, setInline] = useState(false)
 
   useEffect(() => {
-    setCurrent(selected.x === x && selected.y === y)
+    setCurrent(selected.row === row && selected.column === column)
+    setInline(selected.row === row || selected.column === column || selected.group === group)
 
     return () => { }
-  }, [selected, x, y])
+  }, [selected, row, column, group])
 
   const handleClick = () => {
-    setSelected({ y: y, x: x })
+    setSelected({ row: row, column: column, group: group })
   }
 
   return (
-    <div className={current ? 'board-tile selected' : 'board-tile'} onClick={handleClick}>
+    <div className={current ? 'board-tile selected' : (inline ? 'board-tile inline' : 'board-tile')} onClick={handleClick}>
       <h4>{value}</h4>
     </div>
   )
@@ -77,7 +79,7 @@ const calculateTilesValues = (group) => {
   let array = []
   for (let i = min_y; i <= max_y; i++) {
     for (let j = min_x; j <= max_x; j++) {
-      array.push({ x: i, y: j })
+      array.push({ row: i, column: j, group: group })
     }
   }
 
@@ -98,7 +100,7 @@ function TileGroup(props) {
   return (
     <div className='tile-group'>
       {tilesArray.map((element, key) => {
-        return <Tile group={group} key={key} setSelected={setSelected} selected={selected} x={element.x} y={element.y} />
+        return <Tile key={key} group={group} setSelected={setSelected} selected={selected} row={element.row} column={element.column} />
       })}
     </div>
   )
@@ -121,7 +123,7 @@ function Board(props) {
 function Game(props) {
   const [opened, setOpened] = useState(false)     // Set exit modal opened
   const [hintCount, setHintCount] = useState(1)   // Remaining hints count
-  const [selected, setSelected] = useState({ x: -1, y: -1 })
+  const [selected, setSelected] = useState({ row: -1, column: -1, group: -1 })
 
   const useHint = () => {
     if (hintCount > 0) { setHintCount(prev => prev - 1) }

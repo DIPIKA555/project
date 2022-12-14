@@ -213,11 +213,14 @@ body #root .container .board-container .board-wrapper .board-grid .tile-group .b
   height: 60px;
 }
 body #root .container .board-container .board-wrapper .board-grid .tile-group .board-tile:hover {
-  background-color: rgba(238, 238, 238, 0.85);
+  background-color: #ddd;
 }
 body #root .container .board-container .board-wrapper .board-grid .tile-group .board-tile.selected {
   background-color: #0d6dfd;
   color: #fff;
+}
+body #root .container .board-container .board-wrapper .board-grid .tile-group .board-tile.inline {
+  background-color: #E2EDFE;
 }
 body #root .container .board-container .tool-control {
   display: grid;
