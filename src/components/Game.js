@@ -42,7 +42,7 @@ function NumberControl(props) {
 
   const updateValue = (value) => {
     sudokuObject.changeValue(selected.row, selected.column, value)
-    selected.setValue(sudokuObject.getSudoku(selected.row, selected.column))
+    selected.setValue(sudokuObject.getValue(selected.row, selected.column))
   }
 
   let buttons = Array.from({ length: 9 }, (_, index) => {
