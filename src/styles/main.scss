@@ -22,13 +22,127 @@ body {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    background-image: url('/public/background.jpg');
     background-size: cover;
     background-repeat: no-repeat;
+    background-position: center;
     background-color: $background-color;
+    background-image: url('/public/background.jpg');
     color: $default-font-color;
     height: 100vh;
     font-family: 'Roboto Mono', monospace;
+    position: relative;
+
+    .loader-wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        pointer-events: none;
+        position: fixed;
+        transition-delay: 5s;
+        transition: 1s ease-in-out;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 10;
+        backdrop-filter: blur(1000px);
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('/public/background.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .loader-content {
+            backdrop-filter: blur(12px);
+            padding: 70px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 12px;
+            box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px;
+            border: 2px solid rgba(17, 17, 17, 0.6);
+            opacity: 0;
+            transition: 1s ease-in-out;
+
+            .loader {
+                width: 200px;
+                height: 5px;
+                background-color: #eee;
+                position: relative;
+                overflow: hidden;
+                
+                &::after {
+                    content: '';
+                    display: block;
+                    width: 40px;
+                    height: 5px;
+                    background-color: $blue;
+                    position: absolute;
+                    left: -10px;
+                    top: 0;
+                    animation: 3s loader-animation infinite;
+                    
+                    @keyframes loader-animation {
+                        0% {
+                            width: 40px;
+                            left: -2px;
+                        }
+
+                        25% {
+                            width: 60px;
+                        }
+                        
+                        50% {
+                            width: 80px;
+                            left: calc(100% - 38px);
+                        }
+
+                        75% {
+                            width: 45px;
+                        }
+                        
+                        100% {
+                            width: 40px;
+                            left: -2px;
+                        }
+                    }
+                }
+            }
+        }
+
+        &.visible {
+            opacity: 1;
+            pointer-events: all;
+            z-index: 10;
+            
+            .loader-content {
+                opacity: 1;
+            }
+        }
+
+        h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            color: #eee;
+            font-size: 2em;
+        }
+
+        p {
+            margin-bottom: 28px;
+            max-width: 550px;
+            text-align: center;
+        }
+    }
 
     h4 {
         font-weight: 900 !important;
@@ -60,15 +174,6 @@ body {
             margin-top: 5px;
             margin-bottom: 15px;
         }
-    }
-
-    .overlay {
-        position: absolute;
-        height: 100vh;
-        width: 100vw;
-        background-color: rgba(0, 0, 0, 0.5);
-        backdrop-filter: blur(5px);
-        z-index: -1;
     }
 
     .button-wrapper {
@@ -203,12 +308,19 @@ body {
     
     #root {
         height: 100%;
+        background-image: url('/public/background.jpg');
+        background-position: center;
+        background-size: cover;
         
         .container {
             height: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
+
+            &.blur {
+                backdrop-filter: blur(5px);
+            }
 
             &.game-wrapper {
                 gap: 10px;

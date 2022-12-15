@@ -1,3 +1,18 @@
+const funFacts = [
+    'Sudoku is based on an early mathematical analysis concept designed in 1782',
+    'Sudoku only went viral in the Western world in 2004',
+    'The very first Sudoku World Championships were hosted in 2006 in Italy',
+    'One cannot complete all of the possible Sudoku puzzles in an entire lifetime',
+    'Several celebrities have admitted to being addicted to Sudoku',
+    'Many people mistakenly believe that Sudoku is a mathematical game, whereas it is actually a game of logic',
+    'Sudoku is, arguably one of few good addictions to have',
+    'The Guinness World Record for “the fastest time to complete a Sudoku is less than 1 minute and a half',
+    'Since the original release of Sudoku, many variations of the game have been released',
+    'The size of a Sudoku puzzle that can be created is unlimited',
+    'Sudoku puzzles that have just one solution come with various clues for the player',
+    'In the year following Sudoku going viral, pencil sales are said to have increased by around 700%',
+]
+
 // Properly solved sudoku board
 // this board does not contain empty fields
 const filledSudoku = [
@@ -116,4 +131,4 @@ class sudokuClass {
 
 const sudokuObject = new sudokuClass()
 
-export { sudokuObject }
+export { sudokuObject, funFacts }

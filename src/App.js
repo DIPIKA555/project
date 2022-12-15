@@ -1,6 +1,6 @@
-import React from "react"
-import { useNavigate } from "react-router-dom"
-import useLocalStorage from "./hooks/useLocalStorage"
+import React from 'react'
+import { useNavigate } from 'react-router-dom'
+import useLocalStorage from './hooks/useLocalStorage'
 
 function GameMode() {
   const [gameMode, setGameMode] = useLocalStorage('game-mode', 0)
@@ -24,7 +24,7 @@ function GameMode() {
 
 function App() {
   return (
-    <div className="container">
+    <div className="container blur">
       <span className="overlay"></span>
       <header className="app-header">
         <h1 className="headline accent-font">Super Sudoku</h1>
