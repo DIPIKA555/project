@@ -33,6 +33,10 @@ body {
         font-family: 'Zen Dots', cursive;
     }
 
+    .font-accent-color {
+        color: $blue;
+    }
+
     .helper-text {
         color: $dimmed-font-color;
         
@@ -266,7 +270,11 @@ body {
 
                                 &.selected {
                                     background-color: $blue-background;
-                                    color: #fff;
+                                    // color: #fff !important;
+
+                                    .font-accent-color {
+                                        color: #fff;
+                                    }
                                 }
 
                                 &.inline {

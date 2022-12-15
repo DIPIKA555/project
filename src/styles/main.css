@@ -15,6 +15,9 @@ body {
 body .accent-font {
   font-family: "Zen Dots", cursive;
 }
+body .font-accent-color {
+  color: #0d6efd;
+}
 body .helper-text {
   color: rgba(242, 229, 229, 0.6784313725);
 }
@@ -217,6 +220,8 @@ body #root .container .board-container .board-wrapper .board-grid .tile-group .b
 }
 body #root .container .board-container .board-wrapper .board-grid .tile-group .board-tile.selected {
   background-color: #0d6dfd;
+}
+body #root .container .board-container .board-wrapper .board-grid .tile-group .board-tile.selected .font-accent-color {
   color: #fff;
 }
 body #root .container .board-container .board-wrapper .board-grid .tile-group .board-tile.inline {

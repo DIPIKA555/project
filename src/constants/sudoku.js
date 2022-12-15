@@ -1,3 +1,31 @@
+const filledSudoku = [
+    [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ],
+    [ 5, 1, 3, 4, 5, 6, 7, 8, 9 ],
+    [ 3, 0, 3, 4, 5, 6, 7, 8, 9 ],
+    
+    [ 1, 2, 3, 0, 5, 6, 7, 8, 9 ],
+    [ 1, 2, 7, 4, 5, 6, 7, 0, 9 ],
+    [ 1, 0, 3, 4, 0, 6, 7, 8, 9 ],
+    
+    [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ],
+    [ 1, 0, 3, 4, 5, 3, 7, 0, 9 ],
+    [ 1, 2, 3, 2, 5, 4, 6, 8, 0 ]
+]
+
+const checkSudoku = [
+    [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ],
+    [ 5, 1, 3, 4, 5, 6, 7, 8, 9 ],
+    [ 3, 0, 3, 4, 5, 6, 7, 8, 9 ],
+    
+    [ 1, 2, 3, 0, 5, 6, 7, 8, 9 ],
+    [ 1, 2, 7, 4, 5, 6, 7, 0, 9 ],
+    [ 1, 0, 3, 4, 0, 6, 7, 8, 9 ],
+    
+    [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ],
+    [ 1, 0, 3, 4, 5, 3, 7, 0, 9 ],
+    [ 1, 2, 3, 2, 5, 4, 6, 8, 0 ]
+]
+
 const defaultSudoku = [
     [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ],
     [ 5, 1, 3, 4, 5, 6, 7, 8, 9 ],
@@ -42,8 +70,16 @@ class sudokuClass {
         this.sudoku[row][column] = newValue
     }
 
-    getSudokuGroups() {
-        return this.sudokuGroups
+    getSudokuGroups(group) {
+        return this.sudokuGroups[group]
+    }
+
+    getValue(row, column) {
+        try {
+            return this.sudoku[row][column]
+        } catch(e) {
+            return -1
+        }
     }
 }
 
