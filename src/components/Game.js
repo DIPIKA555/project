@@ -38,11 +38,12 @@ function ToolControl(props) {
 
 // Numbers section user can choose from
 function NumberControl(props) {
-  const { selected } = props
+  const { setSelected, selected } = props
 
   const updateValue = (value) => {
     sudokuObject.changeValue(selected.row, selected.column, value)
     selected.setValue(sudokuObject.getValue(selected.row, selected.column))
+    setSelected(prev => { return { row: prev.row, column: prev.column, group: prev.group, setValue: prev.setValue, value: value } })
   }
 
   let buttons = Array.from({ length: 9 }, (_, index) => {
@@ -70,10 +71,13 @@ function Tile(props) {
     setSame(sudokuObject.getValue(selected.row, selected.column) === value && value !== 0)
 
     return () => { }
-  }, [selected, row, column, group])
+  }, [selected, row, column, group, value])
+  
+  useEffect(() => {
+  }, [value])
 
   const handleClick = () => {
-    setSelected({ row: row, column: column, group: group, setValue: setValue })
+    setSelected({ row: row, column: column, group: group, setValue: setValue, value: value })
   }
 
   return (
@@ -132,7 +136,7 @@ function Board(props) {
 function Game(props) {
   const [opened, setOpened] = useState(false)     // Set exit modal opened
   const [hintCount, setHintCount] = useState(1)   // Remaining hints count
-  const [selected, setSelected] = useState({ row: -1, column: -1, group: -1, setValue: ()  => {} })
+  const [selected, setSelected] = useState({ row: -1, column: -1, group: -1, setValue: ()  => {}, value: -1 })
 
   const useHint = () => {
     if (hintCount > 0) { setHintCount(prev => prev - 1) }
@@ -149,7 +153,7 @@ function Game(props) {
             <Board setSelected={setSelected} selected={selected} />
             <div className=''>
               <ToolControl hintCount={hintCount} useHint={useHint} setOpened={setOpened} />
-              <NumberControl selected={selected} />
+              <NumberControl setSelected={setSelected} selected={selected} />
             </div>
           </div>
         </div>
