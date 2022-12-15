@@ -1,7 +1,25 @@
+// Properly solved sudoku board
+// this board does not contain empty fields
 const filledSudoku = [
     [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ],
     [ 5, 1, 3, 4, 5, 6, 7, 8, 9 ],
-    [ 3, 0, 3, 4, 5, 6, 7, 8, 9 ],
+    [ 3, 2, 3, 4, 5, 6, 7, 8, 9 ],
+    
+    [ 1, 2, 3, 9, 5, 6, 7, 8, 9 ],
+    [ 1, 2, 7, 4, 5, 6, 7, 3, 9 ],
+    [ 1, 4, 3, 4, 1, 6, 7, 8, 9 ],
+    
+    [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ],
+    [ 1, 4, 3, 4, 5, 3, 7, 4, 9 ],
+    [ 1, 2, 3, 2, 5, 4, 6, 8, 6 ]
+]
+
+// Sudoku board that is a reference to whitch fields were filled by default
+// and which were not (this board contains empty fields)
+const referenceSudoku = [
+    [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ],
+    [ 5, 1, 0, 4, 0, 6, 7, 0, 0 ],
+    [ 3, 0, 3, 4, 0, 0, 7, 8, 0 ],
     
     [ 1, 2, 3, 0, 5, 6, 7, 8, 9 ],
     [ 1, 2, 7, 4, 5, 6, 7, 0, 9 ],
@@ -12,24 +30,11 @@ const filledSudoku = [
     [ 1, 2, 3, 2, 5, 4, 6, 8, 0 ]
 ]
 
-const checkSudoku = [
-    [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ],
-    [ 5, 1, 3, 4, 5, 6, 7, 8, 9 ],
-    [ 3, 0, 3, 4, 5, 6, 7, 8, 9 ],
-    
-    [ 1, 2, 3, 0, 5, 6, 7, 8, 9 ],
-    [ 1, 2, 7, 4, 5, 6, 7, 0, 9 ],
-    [ 1, 0, 3, 4, 0, 6, 7, 8, 9 ],
-    
-    [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ],
-    [ 1, 0, 3, 4, 5, 3, 7, 0, 9 ],
-    [ 1, 2, 3, 2, 5, 4, 6, 8, 0 ]
-]
-
+// Sudoku board than user can and will modify
 const defaultSudoku = [
     [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ],
-    [ 5, 1, 3, 4, 5, 6, 7, 8, 9 ],
-    [ 3, 0, 3, 4, 5, 6, 7, 8, 9 ],
+    [ 5, 1, 0, 4, 0, 6, 7, 0, 0 ],
+    [ 3, 0, 3, 4, 0, 0, 7, 8, 0 ],
     
     [ 1, 2, 3, 0, 5, 6, 7, 8, 9 ],
     [ 1, 2, 7, 4, 5, 6, 7, 0, 9 ],
@@ -56,21 +61,47 @@ const defaultSudokuGroups = {
 
 class sudokuClass {
     constructor() {
+        
         this.sudoku = defaultSudoku
+        this.filledSudoku = filledSudoku
+        this.referenceSudoku = referenceSudoku
+
         this.sudokuGroups = defaultSudokuGroups
+    }
+
+    checkEditableField(row, column) {
+        /**
+         * Returns true if field can be modified
+         */
+    
+        return (this.referenceSudoku[row][column] === 0)
     }
 
     setSudoku() {}
 
     getSudoku() {
+        /**
+         * Returns default sudoku array
+         */
+
         return this.sudoku
     }
 
     changeValue(row, column, newValue) {
-        this.sudoku[row][column] = newValue
+        /**
+         * Changes field value if possible
+         */
+
+        if(this.checkEditableField(row, column)) {
+            this.sudoku[row][column] = newValue
+        }
     }
 
     getSudokuGroups(group) {
+        /**
+         * Returns 3x3 square boundaries based on group index
+         */
+
         return this.sudokuGroups[group]
     }
 

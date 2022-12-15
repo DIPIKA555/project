@@ -220,6 +220,7 @@ body #root .container .board-container .board-wrapper .board-grid .tile-group .b
 }
 body #root .container .board-container .board-wrapper .board-grid .tile-group .board-tile.selected {
   background-color: #0d6dfd;
+  color: #fff;
 }
 body #root .container .board-container .board-wrapper .board-grid .tile-group .board-tile.selected .font-accent-color {
   color: #fff;
