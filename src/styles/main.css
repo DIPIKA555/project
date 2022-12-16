@@ -29,8 +29,16 @@ body .loader-wrapper {
   right: 0;
   bottom: 0;
   z-index: 10;
-  -webkit-backdrop-filter: blur(1000px);
-          backdrop-filter: blur(1000px);
+}
+body .loader-wrapper span.overlay {
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 10;
 }
 body .loader-wrapper::before {
   content: "";
@@ -56,6 +64,7 @@ body .loader-wrapper .loader-content {
   border: 2px solid rgba(17, 17, 17, 0.6);
   opacity: 0;
   transition: 1s ease-in-out;
+  z-index: 10;
 }
 body .loader-wrapper .loader-content .loader {
   width: 200px;

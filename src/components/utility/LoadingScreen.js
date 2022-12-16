@@ -5,6 +5,7 @@ function LoadingScreen(props) {
 
     return (
         <div className={loading ? 'loader-wrapper visible' : 'loader-wrapper'}>
+            <span className='overlay'></span>
             <div className='loader-content'>
                 <h3 className='accent-font'>Loading</h3>
                 <p>{funFact}</p>
