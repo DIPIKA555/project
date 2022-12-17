@@ -76,7 +76,6 @@ const defaultSudokuGroups = {
 
 class sudokuClass {
     constructor() {
-        
         this.sudoku = defaultSudoku
         this.filledSudoku = filledSudoku
         this.referenceSudoku = referenceSudoku

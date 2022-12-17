@@ -148,6 +148,15 @@ body h4 {
   font-weight: 900 !important;
   color: #000;
 }
+body .font-green {
+  color: #88cf17 !important;
+}
+body .font-red {
+  color: #D23369 !important;
+}
+body .font-yellow {
+  color: #FED049 !important;
+}
 body .read-only {
   color: #333;
   font-weight: 100 !important;
@@ -307,6 +316,20 @@ body #root .container .app-header .headline {
   font-weight: 700;
   font-size: 3em;
   margin: 20px 0;
+}
+body #root .container .app-header .additional-info {
+  width: 100%;
+  display: flex;
+  margin-bottom: 40px;
+  justify-content: space-between;
+}
+body #root .container .app-header .additional-info h4 {
+  font-size: 1.4em;
+  margin: 0;
+  font-family: "Roboto Mono", monospace;
+  color: rgba(221, 221, 221, 0.8);
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 body #root .container .board-container {
   -webkit-backdrop-filter: blur(20px);

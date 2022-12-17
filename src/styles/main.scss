@@ -158,6 +158,18 @@ body {
         font-weight: 900 !important;
         color: #000;
     }
+
+    .font-green {
+        color: #88cf17 !important;
+    }
+
+    .font-red {
+        color: #D23369 !important;
+    }
+
+    .font-yellow {
+        color: #FED049 !important;
+    }
     
     .read-only {
         color: #333;
@@ -350,6 +362,26 @@ body {
                     font-weight: 700;
                     font-size: 3em;
                     margin: 20px 0;
+                }
+
+                .additional-info {
+                    width: 100%;
+                    display: flex;
+                    margin-bottom: 40px;
+                    justify-content: space-between;
+
+                    h4 {
+                        font-size: 1.4em;
+                        margin: 0;
+                        font-family: 'Roboto Mono', monospace;
+                        color: rgba(221, 221, 221, 0.8);
+                        text-transform: uppercase;
+                        letter-spacing: 2px;
+                    }
+
+                    .clock-wrapper {
+
+                    }
                 }
             }
 

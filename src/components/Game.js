@@ -5,6 +5,8 @@ import NumberControl from './NumberControl'
 import TileGroup from './TileGroup'
 import LoadingScreen from './utility/LoadingScreen'
 import { funFacts } from '../constants/sudoku'
+import useLocalStorage from '../hooks/useLocalStorage'
+import Clock from './utility/Clock'
 
 function Board(props) {
   const { setSelected, selected } = props
@@ -24,6 +26,8 @@ function Game(props) {
   const [opened, setOpened] = useState(false)     // Set exit modal opened
   const [hintCount, setHintCount] = useState(1)   // Remaining hints count
   const [selected, setSelected] = useState({ row: -1, column: -1, group: -1, setValue: ()  => {}, value: -1 })
+
+  const gameMode = useLocalStorage('game-mode', 0)
 
   const useHint = () => {
     if (hintCount > 0) { setHintCount(prev => prev - 1) }
@@ -46,6 +50,10 @@ function Game(props) {
         <div className='board-container'>
           <div className='app-header accent-font'>
             <h2>Sudoku</h2>
+            <div className='additional-info'>
+              <h4 className={gameMode === 0 ? 'font-green' : gameMode === 1 ? 'font-yellow' : 'font-red'}>{gameMode === 0 ? 'Easy' : gameMode === 1 ? 'Medium' : 'Hard'}</h4>
+              <Clock loading={loading} />
+            </div>
           </div>
           <div className='interactable-wrapper'>
             <Board setSelected={setSelected} selected={selected} />
