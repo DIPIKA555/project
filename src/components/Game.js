@@ -4,7 +4,7 @@ import ToolControl from './ToolControl'
 import NumberControl from './NumberControl'
 import TileGroup from './TileGroup'
 import LoadingScreen from './utility/LoadingScreen'
-import { funFacts } from '../constants/sudoku'
+import { funFacts, sudokuObject } from '../constants/sudoku'
 import useLocalStorage from '../hooks/useLocalStorage'
 import Clock from './utility/Clock'
 
@@ -38,10 +38,12 @@ function Game(props) {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
+    sudokuObject.start(gameMode[0])
+    console.log(gameMode[0])
     setTimeout(() => {
       setLoading(false)
     }, 3000)
-  }, [])
+  }, [gameMode])
 
   return (
     <>
@@ -51,7 +53,7 @@ function Game(props) {
           <div className='app-header accent-font'>
             <h2>Sudoku</h2>
             <div className='additional-info'>
-              <h4 className={gameMode === 0 ? 'font-green' : gameMode === 1 ? 'font-yellow' : 'font-red'}>{gameMode === 0 ? 'Easy' : gameMode === 1 ? 'Medium' : 'Hard'}</h4>
+              <h4 className={gameMode[0] === 0 ? 'font-green' : gameMode[0] === 1 ? 'font-yellow' : 'font-red'}>{gameMode[0] === 0 ? 'Easy' : gameMode[0] === 1 ? 'Medium' : 'Hard'}</h4>
               <Clock loading={loading} />
             </div>
           </div>
