@@ -83,6 +83,7 @@ body {
             opacity: 0;
             transition: 1s ease-in-out;
             z-index: 10;
+            position: relative;
 
             .loader {
                 width: 200px;
@@ -216,6 +217,19 @@ body {
         outline: none;
         border-radius: 8px;
         cursor: pointer;
+
+        &.plain {
+            background-color: transparent;
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            transition: .1s ease-in-out;
+
+            i {
+                font-size: 3.5em;
+                color: $default-font-color;
+            }
+        }
 
         &.neon-button {
             text-shadow: 0 0 .5em currentColor;

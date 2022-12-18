@@ -65,6 +65,7 @@ body .loader-wrapper .loader-content {
   opacity: 0;
   transition: 1s ease-in-out;
   z-index: 10;
+  position: relative;
 }
 body .loader-wrapper .loader-content .loader {
   width: 200px;
@@ -194,6 +195,17 @@ body .button {
   outline: none;
   border-radius: 8px;
   cursor: pointer;
+}
+body .button.plain {
+  background-color: transparent;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  transition: 0.1s ease-in-out;
+}
+body .button.plain i {
+  font-size: 3.5em;
+  color: #F2E5E5;
 }
 body .button.neon-button {
   text-shadow: 0 0 0.5em currentColor;
