@@ -126,7 +126,7 @@ function generateSudoku(level) {
     let blankFieldsCount = 0
     switch (level) {
         case 0:
-            blankFieldsCount = 30
+            blankFieldsCount = 10
             break
         case 1:
             blankFieldsCount = 40

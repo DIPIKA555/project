@@ -18,7 +18,7 @@ function AppRouter() {
         setMistakes(0)
         setSelected({ row: -1, column: -1, group: -1, setValue: () => { }, value: -1, setCorrect: () => {} })
         navigate('/game')
-        fetch('/get-sudoku', { method: 'GET' }).then(response => response.json()).then(data => {
+        fetch('/get-sudoku?' + new URLSearchParams({ gameMode: window.localStorage.getItem('game-mode') }), { method: 'GET' }).then(response => response.json()).then(data => {
             setBoard(data.filledBoard, data.referenceBoard, data.playableBoard)
             setTimeout(() => {
                 setLoading(false)

@@ -12,18 +12,6 @@ export default function ToolControl(props) {
                 <p>Exit</p>
             </div>
             <div className='button-desc'>
-                <button className='button button-primary'>
-                    <i className="bi bi-eraser"></i>
-                </button>
-                <p>Erase</p>
-            </div>
-            <div className='button-desc'>
-                <button className='button button-primary'>
-                    <i className="bi bi-arrow-counterclockwise"></i>
-                </button>
-                <p>Undo</p>
-            </div>
-            <div className='button-desc'>
                 <button onClick={useHint} className={hintCount > 0 ? 'button button-primary' : 'button button-primary disabled'}>
                     <Badge number={hintCount} />
                     <i className="bi bi-lightbulb"></i>
