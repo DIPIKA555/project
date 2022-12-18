@@ -75,17 +75,18 @@ class sudokuClass {
             }
         }
 
-        this.start = async function (level) {
-            return new Promise((resolve, reject) => {
-                this.level = level
-                this.createSeed()
-                this.solveSudoku(0, 0)
-                this.copySudoku(_filled_sudoku)
-
-                this.generateSudoku(level)
-                this.copySudoku(_reference_sudoku)
-                resolve(true)
-            })
+        this.start = function (level) {
+            console.log('Start')
+            _sudoku = emptySudoku()
+            this.level = level
+            this.createSeed()
+            this.solveSudoku(0, 0)
+            console.log('Solving done')
+            this.copySudoku(_filled_sudoku)
+            
+            this.generateSudoku(level)
+            this.copySudoku(_reference_sudoku)
+            console.log('All set')
         }
     }
 
@@ -197,18 +198,18 @@ class sudokuClass {
          * level Medium (1) -> 50 blankFields
          * level Hard (2) -> 60 blankFields
          * 
-         */
+        */
 
         let blankFieldsCount = 0
         switch (level) {
             case 0:
-                blankFieldsCount = 40
+                blankFieldsCount = 30
                 break
             case 1:
-                blankFieldsCount = 50
+                blankFieldsCount = 45
                 break
             case 2:
-                blankFieldsCount = 60
+                blankFieldsCount = 52
                 break
 
             default:
@@ -230,7 +231,7 @@ class sudokuClass {
             let randomRow = parseInt(this.getRandom(0, availablePositionsMap.size))
             let key = Array.from(availablePositionsMap.keys())[randomRow]
             let randomColumn = this.getRandom(0, availablePositionsMap.get(key).length)
-            
+
             this.getSudoku()[randomRow][availablePositionsMap.get(key)[randomColumn]] = 0
 
             availablePositionsMap.get(key).splice(randomColumn, 1)
