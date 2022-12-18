@@ -8,7 +8,6 @@ app.get('/', (req, res) => {
 
 app.get('/get-sudoku', (req, res) => {
     let gameMode = parseInt(req.query.gameMode)
-    console.log(gameMode, typeof gameMode)
     
     let filledBoard = generate()                        // Generate filled board
     let referenceBoard = generateSudoku(gameMode)       // Create empty fields -> reference board

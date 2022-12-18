@@ -1,5 +1,5 @@
 import React from 'react'
-import { changeValue, countBlank } from '../constants/sudoku'
+import { changeValue, checkDone, countBlank } from '../constants/sudoku'
 
 // Numbers section user can choose from
 export default function NumberControl(props) {
@@ -17,7 +17,7 @@ export default function NumberControl(props) {
 
     let buttons = Array.from({ length: 9 }, (_, index) => {
         index += 1
-        return <button onClick={() => updateValue(index)} className='button button-outline-primary solid' key={index}>{index}</button>
+        return <button onClick={() => updateValue(index)} className={checkDone(index) ? 'button button-outline-primary solid done' : 'button button-outline-primary solid'} key={index}>{index}</button>
     })
 
     return (

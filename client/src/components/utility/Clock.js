@@ -15,7 +15,7 @@ function Clock(props) {
                 setHours(prev => prev + 1)
             }
         }
-    }, [minutes, seconds])
+    }, [setMinutes, setHours, setSeconds, minutes, seconds])
     
     useEffect(() => {
         if(!loading && !modalOpened) {

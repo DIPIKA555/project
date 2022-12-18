@@ -2,7 +2,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
 function GameWonModal(props) {
-    const { opened, setOpened, hours, minutes, seconds } = props
+    const { opened, hours, minutes, seconds } = props
     const navigate = useNavigate()
 
     return (

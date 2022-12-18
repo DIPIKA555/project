@@ -457,6 +457,12 @@ body #root .container .board-container .numbers-keyboard .button {
 body #root .container .board-container .numbers-keyboard .button:hover {
   background-color: rgba(238, 238, 238, 0.85);
 }
+body #root .container .board-container .numbers-keyboard .button.done {
+  background-color: rgba(255, 255, 255, 0.7);
+  cursor: default;
+  pointer-events: none;
+  color: rgba(17, 17, 17, 0.6);
+}
 body #root .modal-overlay {
   position: fixed;
   pointer-events: none;

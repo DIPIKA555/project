@@ -79,7 +79,7 @@ const countBlank = () => {
     let counter = 0
     for (let i = 0; i < 9; i++) {
         for (let j = 0; j < 9; j++) {
-            if(playableSudoku[i][j] === 0 || playableSudoku[i][j] !== filledSudoku[i][j]) counter += 1
+            if (playableSudoku[i][j] === 0 || playableSudoku[i][j] !== filledSudoku[i][j]) counter += 1
         }
     }
 
@@ -88,6 +88,17 @@ const countBlank = () => {
 
 const getHint = (row, column) => {
     return filledSudoku[row][column]
+}
+
+const checkDone = (number) => {
+    let counter = 0
+    for (let i = 0; i < 9; i++) {
+        for (let j = 0; j < 9; j++) {
+            if(playableSudoku[i][j] === number && playableSudoku[i][j] === filledSudoku[i][j]) counter += 1
+        }
+    }
+
+    return (counter === 9)
 }
 
 export {
@@ -101,5 +112,6 @@ export {
     changeValue,
     getHint,
     validateInput,
-    countBlank
+    countBlank,
+    checkDone
 }

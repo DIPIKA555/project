@@ -523,6 +523,13 @@ body {
                         &:hover {
                             background-color: rgba(238, 238, 238, 0.85);
                         }
+
+                        &.done {
+                            background-color: rgba(255, 255, 255, 0.7);
+                            cursor: default;
+                            pointer-events: none;
+                            color: rgba(17, 17, 17, 0.6);
+                        }
                     }
                 }
             }

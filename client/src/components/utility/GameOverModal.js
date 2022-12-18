@@ -2,7 +2,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
 function GameOverModal(props) {
-    const { opened, setOpened } = props
+    const { opened } = props
     const navigate = useNavigate()
 
     return (
