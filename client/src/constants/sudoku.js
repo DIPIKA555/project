@@ -27,14 +27,14 @@ const defaultSudokuGroups = {
     8: { min_x: 6, max_x: 8, min_y: 6, max_y: 8 }
 }
 
-let playableSudoku = Array.from({ length: 9 }, (_) => [0, 0, 0,  0, 0, 0,  0, 0, 0])
-let referenceSudoku = Array.from({ length: 9 }, (_) => [0, 0, 0,  0, 0, 0,  0, 0, 0])
-let filledSudoku = Array.from({ length: 9 }, (_) => [0, 0, 0,  0, 0, 0,  0, 0, 0])
+let playableSudoku = Array.from({ length: 9 }, (_) => [0, 0, 0, 0, 0, 0, 0, 0, 0])
+let referenceSudoku = Array.from({ length: 9 }, (_) => [0, 0, 0, 0, 0, 0, 0, 0, 0])
+let filledSudoku = Array.from({ length: 9 }, (_) => [0, 0, 0, 0, 0, 0, 0, 0, 0])
 
 const clearBoard = () => {
-    playableSudoku = Array.from({ length: 9 }, (_) => [0, 0, 0,  0, 0, 0,  0, 0, 0])
-    referenceSudoku = Array.from({ length: 9 }, (_) => [0, 0, 0,  0, 0, 0,  0, 0, 0])
-    filledSudoku = Array.from({ length: 9 }, (_) => [0, 0, 0,  0, 0, 0,  0, 0, 0])
+    playableSudoku = Array.from({ length: 9 }, (_) => [0, 0, 0, 0, 0, 0, 0, 0, 0])
+    referenceSudoku = Array.from({ length: 9 }, (_) => [0, 0, 0, 0, 0, 0, 0, 0, 0])
+    filledSudoku = Array.from({ length: 9 }, (_) => [0, 0, 0, 0, 0, 0, 0, 0, 0])
 }
 
 const setBoard = (filledBoard, referenceBoard, playableBoard) => {
@@ -75,6 +75,17 @@ const getValue = (row, column) => {
     }
 }
 
+const countBlank = () => {
+    let counter = 0
+    for (let i = 0; i < 9; i++) {
+        for (let j = 0; j < 9; j++) {
+            if(playableSudoku[i][j] === 0 || playableSudoku[i][j] !== filledSudoku[i][j]) counter += 1
+        }
+    }
+
+    return counter
+}
+
 const getHint = (row, column) => {
     return filledSudoku[row][column]
 }
@@ -89,5 +100,6 @@ export {
     checkEditableField,
     changeValue,
     getHint,
-    validateInput
+    validateInput,
+    countBlank
 }

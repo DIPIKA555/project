@@ -1,11 +1,7 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect } from 'react'
 
 function Clock(props) {
-    const { loading } = props
-
-    const [hours, setHours] = useState(0)
-    const [minutes, setMinutes] = useState(0)
-    const [seconds, setSeconds] = useState(0)
+    const { modalOpened, loading, hours, setHours, minutes, setMinutes, seconds, setSeconds } = props
 
     const getTime = useCallback(() => {
         if(seconds < 59) {
@@ -22,7 +18,7 @@ function Clock(props) {
     }, [minutes, seconds])
     
     useEffect(() => {
-        if(!loading) {
+        if(!loading && !modalOpened) {
             const interval = setInterval(() => {
                 getTime()
             }, 1000)
@@ -32,7 +28,7 @@ function Clock(props) {
             }
         }
 
-    }, [hours, minutes, seconds, getTime, loading])
+    }, [hours, minutes, seconds, getTime, loading, modalOpened])
 
     return (
         <div className='clock-wrapper'>

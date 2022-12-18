@@ -8,6 +8,7 @@ import { changeValue, funFacts, getHint } from '../constants/sudoku'
 import useLocalStorage from '../hooks/useLocalStorage'
 import Clock from './utility/Clock'
 import GameOverModal from './utility/GameOverModal'
+import GameWonModal from './utility/GameWonModal'
 
 function Board(props) {
   const { setSelected, selected } = props
@@ -28,20 +29,25 @@ function Game(props) {
   const [opened, setOpened] = useState(false)     // Set exit modal opened
   const [gameOver, setGameOver] = useState(false)
   const [hintCount, setHintCount] = useState(1)   // Remaining hints count
+  const [gameWon, setGameWon] = useState(false)
 
   const gameMode = useLocalStorage('game-mode', 0)
 
   const useHint = () => {
     if (hintCount > 0) { setHintCount(prev => prev - 1) }
     let correctValue = getHint(selected.row, selected.column)
-    changeValue(selected.row, selected.column, correctValue, selected.setValue)
+    changeValue(selected.row, selected.column, correctValue, selected.setValue, selected.setCorrect)
   }
 
   useEffect(() => {
-    if(mistakes > 2) {
+    if (mistakes > 2) {
       setGameOver(true)
     }
   }, [mistakes])
+
+  const [hours, setHours] = useState(0)
+  const [minutes, setMinutes] = useState(0)
+  const [seconds, setSeconds] = useState(0)
 
   return (
     <>
@@ -53,7 +59,7 @@ function Game(props) {
             <div className='additional-info'>
               <h4 className={gameMode[0] === 0 ? 'font-green' : gameMode[0] === 1 ? 'font-yellow' : 'font-red'}>{gameMode[0] === 0 ? 'Easy' : gameMode[0] === 1 ? 'Medium' : 'Hard'}</h4>
               <div className='inner-wrapper'>
-                <Clock loading={loading} />
+                <Clock modalOpened={opened || gameOver || gameWon} hours={hours} setHours={setHours} minutes={minutes} setMinutes={setMinutes} seconds={seconds} setSeconds={setSeconds} loading={loading} />
                 <h4>Mistakes: <span className={mistakes > 0 ? 'font-yellow' : ''}>{mistakes}</span>/3</h4>
               </div>
             </div>
@@ -62,13 +68,14 @@ function Game(props) {
             <Board setSelected={setSelected} selected={selected} />
             <div>
               <ToolControl hintCount={hintCount} useHint={useHint} setOpened={setOpened} />
-              <NumberControl setMistakes={setMistakes} setSelected={setSelected} selected={selected} />
+              <NumberControl setGameWon={setGameWon} setMistakes={setMistakes} setSelected={setSelected} selected={selected} />
             </div>
           </div>
         </div>
       </div>
       <ExitModal opened={opened} setOpened={setOpened} />
       <GameOverModal opened={gameOver} setOpened={setGameOver} />
+      <GameWonModal opened={gameWon} setOpened={setGameWon} hours={hours} minutes={minutes} seconds={seconds} />
     </>
   )
 }
