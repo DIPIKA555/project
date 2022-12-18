@@ -55,11 +55,16 @@ const validateInput = (row, column) => {
     return (playableSudoku[row][column] === filledSudoku[row][column])
 }
 
-const changeValue = (row, column, newValue, callback) => {
+const changeValue = (row, column, newValue, callback, setCorrect) => {
     if (checkEditableField(row, column)) {
         playableSudoku[row][column] = newValue
         callback(newValue)
+        let correct = validateInput(row, column)
+        setCorrect(correct)
+        return correct
     }
+
+    return true
 }
 
 const getValue = (row, column) => {
@@ -83,5 +88,6 @@ export {
     getValue,
     checkEditableField,
     changeValue,
-    getHint
+    getHint,
+    validateInput
 }

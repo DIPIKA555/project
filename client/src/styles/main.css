@@ -323,6 +323,10 @@ body #root .container .app-header .additional-info {
   margin-bottom: 40px;
   justify-content: space-between;
 }
+body #root .container .app-header .additional-info .inner-wrapper {
+  display: flex;
+  gap: 50px;
+}
 body #root .container .app-header .additional-info h4 {
   font-size: 1.4em;
   margin: 0;
