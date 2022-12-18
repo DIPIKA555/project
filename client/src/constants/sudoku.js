@@ -31,17 +31,16 @@ let playableSudoku = [9][9]
 let referenceSudoku = [9][9]
 let filledSudoku = [9][9]
 
+const clearBoard = () => {
+    playableSudoku = [9][9]
+    referenceSudoku = [9][9]
+    filledSudoku = [9][9]
+}
+
 const setBoard = (filledBoard, referenceBoard, playableBoard) => {
     playableSudoku = playableBoard
     referenceSudoku = referenceBoard
     filledSudoku = filledBoard
-
-    console.log('Playable')
-    console.table(playableSudoku)
-    console.log('Reference')
-    console.table(referenceSudoku)
-    console.log('FIlled')
-    console.table(filledSudoku)
 }
 
 const getSudokuGroups = (group) => {
@@ -52,9 +51,13 @@ const checkEditableField = (row, column) => {
     return referenceSudoku[row][column] === 0
 }
 
+const validateInput = (row, column) => {
+    return (playableSudoku[row][column] === filledSudoku[row][column])
+}
+
 const changeValue = (row, column, newValue, callback) => {
-    console.log('Changing value: ', row, column, newValue)
     if (checkEditableField(row, column)) {
+        console.log('Changing value: ', row, column, newValue)
         playableSudoku[row][column] = newValue
         callback(newValue)
     }
@@ -69,5 +72,12 @@ const getValue = (row, column) => {
 }
 
 export {
-    funFacts, setBoard, playableSudoku, getSudokuGroups, getValue, checkEditableField, changeValue
+    clearBoard,
+    funFacts,
+    setBoard,
+    playableSudoku,
+    getSudokuGroups,
+    getValue,
+    checkEditableField,
+    changeValue
 }

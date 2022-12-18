@@ -3,7 +3,7 @@ import { Route, Routes, useNavigate } from 'react-router-dom'
 import App from './App'
 import Stats from './components/Stats'
 import Game from './components/Game'
-import { funFacts, setBoard } from './constants/sudoku'
+import { clearBoard, funFacts, setBoard } from './constants/sudoku'
 
 function AppRouter() {
     const [loading, setLoading] = useState(true)
@@ -11,6 +11,7 @@ function AppRouter() {
     const funFactIndex = useMemo(() => parseInt(Math.random() * funFacts.length), [])
     const startGame = () => {
         setLoading(true)
+        clearBoard()
         navigate('/game')
         fetch('/get-sudoku', { method: 'GET' }).then(response => response.json()).then(data => {
             setBoard(data.filledBoard, data.referenceBoard, data.playableBoard)

@@ -15,7 +15,7 @@ function ExitModal(props) {
                     </p>
                 </div>
                 <div className='modal-action'>
-                    <button className='button button-danger' onClick={() => { navigate('/') }}>
+                    <button className='button button-danger' onClick={() => {  navigate('/') }}>
                         Exit
                     </button>
                     <button className='button button-secondary' onClick={() => { setOpened(false) }}>
