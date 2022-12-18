@@ -11,7 +11,6 @@ function AppRouter() {
     const funFactIndex = useMemo(() => parseInt(Math.random() * funFacts.length), [])
     const startGame = () => {
         setLoading(true)
-        clearBoard()
         navigate('/game')
         fetch('/get-sudoku', { method: 'GET' }).then(response => response.json()).then(data => {
             setBoard(data.filledBoard, data.referenceBoard, data.playableBoard)

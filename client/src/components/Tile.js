@@ -11,6 +11,10 @@ export default function Tile(props) {
     const editable = useState(checkEditableField(row, column))
 
     useEffect(() => {
+        setValue(getValue(row, column))
+    }, [])
+
+    useEffect(() => {
         setCurrent(selected.row === row && selected.column === column)
         setInline(selected.row === row || selected.column === column || selected.group === group)
         setSame(getValue(selected.row, selected.column) === value && value !== 0)

@@ -27,14 +27,14 @@ const defaultSudokuGroups = {
     8: { min_x: 6, max_x: 8, min_y: 6, max_y: 8 }
 }
 
-let playableSudoku = [9][9]
-let referenceSudoku = [9][9]
-let filledSudoku = [9][9]
+let playableSudoku = Array.from({ length: 9 }, (_) => [0, 0, 0,  0, 0, 0,  0, 0, 0])
+let referenceSudoku = Array.from({ length: 9 }, (_) => [0, 0, 0,  0, 0, 0,  0, 0, 0])
+let filledSudoku = Array.from({ length: 9 }, (_) => [0, 0, 0,  0, 0, 0,  0, 0, 0])
 
 const clearBoard = () => {
-    playableSudoku = [9][9]
-    referenceSudoku = [9][9]
-    filledSudoku = [9][9]
+    playableSudoku = Array.from({ length: 9 }, (_) => [0, 0, 0,  0, 0, 0,  0, 0, 0])
+    referenceSudoku = Array.from({ length: 9 }, (_) => [0, 0, 0,  0, 0, 0,  0, 0, 0])
+    filledSudoku = Array.from({ length: 9 }, (_) => [0, 0, 0,  0, 0, 0,  0, 0, 0])
 }
 
 const setBoard = (filledBoard, referenceBoard, playableBoard) => {
