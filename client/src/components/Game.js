@@ -4,7 +4,7 @@ import ToolControl from './ToolControl'
 import NumberControl from './NumberControl'
 import TileGroup from './TileGroup'
 import LoadingScreen from './utility/LoadingScreen'
-import { funFacts } from '../constants/sudoku'
+import { changeValue, funFacts, getHint } from '../constants/sudoku'
 import useLocalStorage from '../hooks/useLocalStorage'
 import Clock from './utility/Clock'
 
@@ -32,6 +32,8 @@ function Game(props) {
 
   const useHint = () => {
     if (hintCount > 0) { setHintCount(prev => prev - 1) }
+    let correctValue = getHint(selected.row, selected.column)
+    changeValue(selected.row, selected.column, correctValue, selected.setValue)
   }
 
   return (

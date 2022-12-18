@@ -57,7 +57,6 @@ const validateInput = (row, column) => {
 
 const changeValue = (row, column, newValue, callback) => {
     if (checkEditableField(row, column)) {
-        console.log('Changing value: ', row, column, newValue)
         playableSudoku[row][column] = newValue
         callback(newValue)
     }
@@ -71,6 +70,10 @@ const getValue = (row, column) => {
     }
 }
 
+const getHint = (row, column) => {
+    return filledSudoku[row][column]
+}
+
 export {
     clearBoard,
     funFacts,
@@ -79,5 +82,6 @@ export {
     getSudokuGroups,
     getValue,
     checkEditableField,
-    changeValue
+    changeValue,
+    getHint
 }
