@@ -1,10 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useState } from 'react'
 import ExitModal from './utility/ExitModal'
 import ToolControl from './ToolControl'
 import NumberControl from './NumberControl'
 import TileGroup from './TileGroup'
 import LoadingScreen from './utility/LoadingScreen'
-import { funFacts, sudokuObject } from '../constants/sudoku'
+import { funFacts } from '../constants/sudoku'
 import useLocalStorage from '../hooks/useLocalStorage'
 import Clock from './utility/Clock'
 
@@ -23,6 +23,7 @@ function Board(props) {
 }
 
 function Game(props) {
+  const { loading, funFactIndex } = props
   const [opened, setOpened] = useState(false)     // Set exit modal opened
   const [hintCount, setHintCount] = useState(1)   // Remaining hints count
   const [selected, setSelected] = useState({ row: -1, column: -1, group: -1, setValue: ()  => {}, value: -1 })
@@ -33,21 +34,9 @@ function Game(props) {
     if (hintCount > 0) { setHintCount(prev => prev - 1) }
   }
 
-  const factIndex = useRef((Math.random() * (funFacts.length - 1)).toFixed(0))
-
-  const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    sudokuObject.start(gameMode[0])
-    console.log(gameMode[0])
-    setTimeout(() => {
-      setLoading(false)
-    }, 3000)
-  }, [gameMode])
-
   return (
     <>
-      <LoadingScreen loading={loading} funFact={funFacts[parseInt(factIndex.current)]} />
+      <LoadingScreen loading={loading} funFact={funFacts[funFactIndex]} />
       <div className='container game-wrapper'>
         <div className='board-container'>
           <div className='app-header accent-font'>

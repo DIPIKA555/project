@@ -1,13 +1,12 @@
 import React from 'react'
-import { sudokuObject } from '../constants/sudoku'
+import { changeValue } from '../constants/sudoku'
 
 // Numbers section user can choose from
 export default function NumberControl(props) {
     const { setSelected, selected } = props
 
     const updateValue = (value) => {
-        sudokuObject.changeValue(selected.row, selected.column, value)
-        selected.setValue(sudokuObject.getValue(selected.row, selected.column))
+        changeValue(selected.row, selected.column, value, selected.setValue)
         setSelected(prev => { return { row: prev.row, column: prev.column, group: prev.group, setValue: prev.setValue, value: value } })
     }
 

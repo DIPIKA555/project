@@ -1,19 +1,19 @@
-import React, { useState, useEffect, useMemo } from 'react'
-import { sudokuObject } from '../constants/sudoku'
+import React, { useState, useEffect } from 'react'
+import { checkEditableField, getValue } from '../constants/sudoku'
 
 export default function Tile(props) {
     const { setSelected, selected, row, column, group } = props
 
-    const [value, setValue] = useState(sudokuObject.getValue(row, column))
+    const [value, setValue] = useState(getValue(row, column))
     const [current, setCurrent] = useState(false)
     const [inline, setInline] = useState(false)
     const [same, setSame] = useState(false)             // Same value as selected field
-    const editable = useMemo(() => sudokuObject.checkEditableField(row, column), [row, column])
+    const editable = useState(checkEditableField(row, column))
 
     useEffect(() => {
         setCurrent(selected.row === row && selected.column === column)
         setInline(selected.row === row || selected.column === column || selected.group === group)
-        setSame(sudokuObject.getValue(selected.row, selected.column) === value && value !== 0)
+        setSame(getValue(selected.row, selected.column) === value && value !== 0)
 
         return () => { }
     }, [selected, row, column, group, value])

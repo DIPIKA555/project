@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import Tile from './Tile'
-import { sudokuObject } from '../constants/sudoku'
+import { getSudokuGroups } from '../constants/sudoku'
 
 const calculateTilesValues = (group) => {
-    const { min_x, max_x, min_y, max_y } = sudokuObject.getSudokuGroups(group)
+    const { min_x, max_x, min_y, max_y } = getSudokuGroups(group)
     let array = []
     for (let i = min_y; i <= max_y; i++) {
         for (let j = min_x; j <= max_x; j++) {

@@ -1,5 +1,4 @@
 import React from 'react'
-import { sudokuObject } from '../constants/sudoku'
 import Badge from './utility/Badge'
 
 export default function ToolControl(props) {
